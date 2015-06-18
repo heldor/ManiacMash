@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GamePlay : MonoBehaviour {
-	ArrayList playerInput;
-	ArrayList compInput;
+	List<string> playerInput;
+	List<string> compInput;
 	private int puna = 1;
 	private int kelta = 2;
 	private int sini = 3;
@@ -12,45 +13,53 @@ public class GamePlay : MonoBehaviour {
 	public Button pun;
 	public Button sin;
 	public Button kelt;
-	public static int playerInputCount = 0;
+	public int playerInputCount = 0;
 	private int lastRandom = 0;
 	public Text pisteet;
+	public static int pisteetInt = 0;
 
 	// Use this for initialization
 	void Start () {
-		playerInput = new ArrayList();
-		compInput = new ArrayList();
+		playerInput = new List<string>();
+		compInput = new List<string>();
 	}
 
 	public void redPressed(){
+		playerInputCount++;
 		playerInput.Add ("red");
 		CheckLists ();
 	}
 	public void bluePressed(){
+		playerInputCount++;
 		playerInput.Add ("blue");
 		CheckLists ();
 	}
 	public void yellowPressed(){
+		playerInputCount++;
 		playerInput.Add ("yellow");
 		CheckLists ();
 	}
+
 	public void CheckLists(){
-		/*if (playerInputCount > compInput.Count) {
-			pun.interactable = false;
-			kelt.interactable = false;
-			sin.interactable = false;
-			Application.LoadLevel ("gameOver");
-		} else {*/
-			if (playerInput [playerInputCount].Equals (compInput [playerInputCount])) {
-				playerInputCount++;
-				pisteet.text = "Points: " + playerInputCount;
-			} else {
+		if (playerInput.Count <= compInput.Count){
+			if (playerInput [playerInputCount-1].Equals (compInput [playerInputCount-1])) {
+				pisteet.text = "Points: " + pisteetInt;
+			} 
+			else 
+			{
 				pun.interactable = false;
 				kelt.interactable = false;
 				sin.interactable = false;
 				Application.LoadLevel ("gameOver");
 			}
-		//}
+		}
+		else
+		{
+			pun.interactable = false;
+			kelt.interactable = false;
+			sin.interactable = false;
+			Application.LoadLevel ("gameOver");
+		}
 	}
 
 	public float lastChange        = 0f;
