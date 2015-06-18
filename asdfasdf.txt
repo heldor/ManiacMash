@@ -1,0 +1,2 @@
+if (Potato == true)
+	eat potato;
