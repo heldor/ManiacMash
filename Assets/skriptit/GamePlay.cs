@@ -43,6 +43,8 @@ public class GamePlay : MonoBehaviour {
 	public void CheckLists(){
 		if (playerInput.Count <= compInput.Count){
 			if (playerInput [playerInputCount-1].Equals (compInput [playerInputCount-1])) {
+				pisteetInt++;
+				Debug.Log("points: " + pisteetInt);
 				pisteet.text = "Points: " + pisteetInt;
 			} 
 			else 
